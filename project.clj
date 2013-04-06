@@ -5,4 +5,5 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.5.1"]
   		[aleph "0.3.0-beta15" :exclusions [lamina]]
-		[lamina "0.5.0-beta15"]])
+		[lamina "0.5.0-beta15"]
+                [org.clojure/data.json "0.2.1"]])

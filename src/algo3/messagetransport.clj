@@ -1,12 +1,12 @@
 (ns algo3.messagetransport)
 
-(use 'lamina.core 'aleph.tcp 'gloss.core)
+(use 'lamina.core 'aleph.tcp 'gloss.core 'clojure.data.json)
 
 (def msg-separator "\r\n")
 
 (defn create-handler [msg-callback]
   (fn [ch client-info]
-    (receive-all ch #(msg-callback ch %))))
+    (receive-all ch #(msg-callback ch (read-str %)))))
 
 (defn start-client-channel [host port]
   (wait-for-result
