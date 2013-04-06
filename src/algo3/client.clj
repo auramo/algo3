@@ -1,17 +1,11 @@
 (ns algo3.client)
 
-(use 'lamina.core 'aleph.tcp 'gloss.core)
+(use 'lamina.core 'aleph.tcp 'gloss.core 'algo3.messagetransport)
 
- (def ch
-  (wait-for-result
-    (tcp-client {:host "localhost",
-                 :port 10000,
-                 :frame (string :utf-8 :delimiters ["\r\n"])})))
-
-(defn send-msg [] 
+(defn send-msg []
+  (let [ch (start-client-channel "localhost" 10000)]
       (enqueue ch "Hello, server!")
       (println "sent the message")
-      (println (wait-for-message ch))
-      (println "got message"))
+      (println (wait-for-message ch))))
 
 (defn -main[] (send-msg))
