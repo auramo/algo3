@@ -1,6 +1,8 @@
-(ns algo3.messagetransport)
-
-(use 'lamina.core 'aleph.tcp 'gloss.core 'clojure.data.json)
+(ns algo3.messagetransport
+  (:use [lamina.core]
+        [aleph.tcp] 
+        [gloss.core] 
+        [clojure.data.json]))
 
 (def msg-separator "\r\n")
 
