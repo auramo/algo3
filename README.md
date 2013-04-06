@@ -1,13 +1,10 @@
 # algo3
 
-A Clojure library designed to ... well, that part is up to you.
+Clojure code for reading and writing json messages over TCP.
 
 ## Usage
 
-FIXME
+lein run -m algo3.server
+lein run -m algo3.client
 
-## License
 
-Copyright © 2013 FIXME
-
-Distributed under the Eclipse Public License, the same as Clojure.
