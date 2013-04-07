@@ -16,6 +16,9 @@
                 :port port,
                 :frame (string :utf-8 :delimiters [msg-separator])})))
 
+;; Send a clojure map structure which is encoded to json internally here
+(defn send-message [channel message]
+  (enqueue channel (write-str message)))
 
 (defn start-server [msg-callback port]
   (println "Starting server on port" port)

@@ -4,10 +4,9 @@
         [clojure.data.json]))
 
 (defn send-msg []
-  (let [ch (start-client-channel "localhost" 10000)
-        msg (write-str {:foo "bar"})]
-    (println "sending message" msg)
-    (enqueue ch msg)
+  (let [ch (start-client-channel "localhost" 10000)]
+    (println "sending message")
+    (send-message ch {:foo "bar"})
     (println "sent the message, got reply")
     (println (read-str (wait-for-message ch)))))
 
