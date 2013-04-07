@@ -4,8 +4,6 @@ Clojure code for reading and writing json messages over TCP.
 
 ## Usage
 
-lein run -m algo3.server
+lein server
 
-lein run -m algo3.client
-
-
+lein client
