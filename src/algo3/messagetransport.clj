@@ -7,9 +7,12 @@
 
 (def msg-separator "\r\n")
 
+(defn- json->clj [string]
+  (json/read-str string :key-fn keyword))
+
 (defn create-handler [msg-callback]
   (fn [ch client-info]
-    (receive-all ch #(msg-callback ch (json/read-str %)))))
+    (receive-all ch #(msg-callback ch (json->clj %)))))
 
 (defn start-client-channel [host port]
   (wait-for-result
@@ -22,7 +25,7 @@
   (enqueue channel (json/write-str message)))
 
 (defn read-message [channel]
-  (json/read-str (wait-for-message channel) :key-fn keyword))
+  (json->clj (wait-for-message channel)))
 
 (defn start-server [msg-callback port]
   (trace "Starting server on port" port)
