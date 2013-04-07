@@ -20,6 +20,9 @@
 (defn send-message [channel message]
   (enqueue channel (write-str message)))
 
+(defn read-message [channel]
+  (read-str (wait-for-message channel)))
+
 (defn start-server [msg-callback port]
   (println "Starting server on port" port)
   (start-tcp-server (create-handler msg-callback) {:port port, :frame (string :utf-8 :delimiters [msg-separator])}))
