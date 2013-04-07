@@ -1,8 +1,9 @@
 (ns algo3.server
-  (:use [algo3.messagetransport]))
+  (:use [algo3.messagetransport]
+        [clojure.tools.trace]))
 
 (defn handle-msg [channel msg]
-  (println "got message" msg)
+  (trace "got message" msg)
   (send-message channel (assoc msg :x "y")))
 
 (defn -main []

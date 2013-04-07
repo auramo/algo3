@@ -1,13 +1,13 @@
 (ns algo3.client
-  (:use 
-        [algo3.messagetransport]))
+  (:use [algo3.messagetransport]
+        [clojure.tools.trace]))
 
 (defn start-sending []
   (loop [channel (start-client-channel "localhost" 10000)]
-    (println "Sending message")
+    (trace "Sending message")
     (send-message channel {:foo "bar"})
-    (println "Got reply:")
-    (println (read-message channel))
+    (trace "Got reply:")
+    (trace (read-message channel))
     (Thread/sleep 3000)
     (recur channel)))
 

@@ -2,7 +2,8 @@
   (:use [lamina.core]
         [aleph.tcp] 
         [gloss.core] 
-        [clojure.data.json]))
+        [clojure.data.json]
+        [clojure.tools.trace]))
 
 (def msg-separator "\r\n")
 
@@ -24,6 +25,6 @@
   (read-str (wait-for-message channel)))
 
 (defn start-server [msg-callback port]
-  (println "Starting server on port" port)
+  (trace "Starting server on port" port)
   (start-tcp-server (create-handler msg-callback) {:port port, :frame (string :utf-8 :delimiters [msg-separator])}))
 
