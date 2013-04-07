@@ -1,15 +1,15 @@
 (ns algo3.messagetransport
+  (:require [clojure.data.json :as json])
   (:use [lamina.core]
-        [aleph.tcp] 
-        [gloss.core] 
-        [clojure.data.json]
+        [aleph.tcp]
+        [gloss.core]
         [clojure.tools.trace]))
 
 (def msg-separator "\r\n")
 
 (defn create-handler [msg-callback]
   (fn [ch client-info]
-    (receive-all ch #(msg-callback ch (read-str %)))))
+    (receive-all ch #(msg-callback ch (json/read-str %)))))
 
 (defn start-client-channel [host port]
   (wait-for-result
@@ -19,10 +19,10 @@
 
 ;; Send a clojure map structure which is encoded to json internally here
 (defn send-message [channel message]
-  (enqueue channel (write-str message)))
+  (enqueue channel (json/write-str message)))
 
 (defn read-message [channel]
-  (read-str (wait-for-message channel)))
+  (json/read-str (wait-for-message channel)))
 
 (defn start-server [msg-callback port]
   (trace "Starting server on port" port)
