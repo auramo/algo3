@@ -1,7 +1,5 @@
 (ns algo3.server
-  (:use [lamina.core]
-        [algo3.messagetransport]
-        [clojure.data.json]))
+  (:use [algo3.messagetransport]))
 
 (defn handle-msg [channel msg]
   (println "got message" msg)

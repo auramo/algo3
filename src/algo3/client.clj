@@ -1,7 +1,6 @@
 (ns algo3.client
-  (:use [lamina.core]
-        [algo3.messagetransport]
-        [clojure.data.json]))
+  (:use 
+        [algo3.messagetransport]))
 
 (defn send-msg []
   (let [ch (start-client-channel "localhost" 10000)]
