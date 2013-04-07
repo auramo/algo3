@@ -22,7 +22,7 @@
   (enqueue channel (json/write-str message)))
 
 (defn read-message [channel]
-  (json/read-str (wait-for-message channel)))
+  (json/read-str (wait-for-message channel) :key-fn keyword))
 
 (defn start-server [msg-callback port]
   (trace "Starting server on port" port)
