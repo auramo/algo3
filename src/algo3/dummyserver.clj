@@ -1,4 +1,4 @@
-(ns algo3.server
+(ns algo3.dummyserver
   (:use [algo3.messagetransport]
         [clojure.tools.trace]))
 

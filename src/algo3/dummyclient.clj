@@ -1,4 +1,4 @@
-(ns algo3.client
+(ns algo3.dummyclient
   (:use [algo3.messagetransport]
         [clojure.tools.trace]))
 
