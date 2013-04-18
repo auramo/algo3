@@ -26,7 +26,7 @@
 
 (defn conversation [channel]
   (let [msg (read-message channel)]
-    (if (handle-msg msg) (recur channel))))
+    (when (handle-msg msg) (recur channel))))
 
 (defn start-client []
   (let [channel (start-client-channel "localhost" 10000)]
